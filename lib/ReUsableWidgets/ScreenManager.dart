@@ -3,6 +3,7 @@ import 'package:i_supply_task/Bloc/CurrentScreenBloc.dart';
 import 'package:i_supply_task/Screens/Medecines.dart';
 import 'package:i_supply_task/Screens/TrackYourOrder.dart';
 
+import '../Screens/Cart.dart';
 import '../Screens/Home.dart';
 
 class ScreenManager extends StatefulWidget {
@@ -16,6 +17,7 @@ class _ScreenManagerState extends State<ScreenManager> {
     HomeScreen(),
     MedecinesScreen(),
     TrackYourOrderScreen(),
+    Cart(),
     // Add your other screens here
   ];
 
@@ -24,7 +26,10 @@ class _ScreenManagerState extends State<ScreenManager> {
     return StreamBuilder<Object>(
         stream: currentScreenBloc.currentScreenStream,
         builder: (context, snapshot) {
-          return _screens[int.parse(snapshot.data.toString())];
+          if(snapshot.hasData){
+            return _screens[int.parse(snapshot.data.toString())];
+          }
+          return _screens[index];
         });
   }
 }

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:i_supply_task/Bloc/States.dart';
 
 class CurrentScreenBloc {
-  final _currentScreenController = StreamController<int>();
+  final _currentScreenController = StreamController<int>.broadcast();
   int currentScreenIndex = 0;
 
   Stream<int> get currentScreenStream => _currentScreenController.stream;
