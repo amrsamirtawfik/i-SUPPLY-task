@@ -1,24 +1,28 @@
-// AuthenticationBloc
-import 'dart:async';
+import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:i_supply_task/Bloc/States.dart';
 
+class CartBloc extends Cubit<CartState> {
+  CartBloc() : super(CartState());
 
+  static CartBloc get(context) => BlocProvider.of(context);
 
-class CartBloc {
-  final _cartController = StreamController<List<Map<String, String>>>();
+  List<Map<String, String>> cartList = [];
 
-  Stream<List<Map<String, String>>> get cartStream =>
-      _cartController.stream;
-  List<Map<String,String>> cartList=[];
+  int productInCart(String productName) {
+    return cartList
+        .indexWhere((element) => element["productName"] == productName);
+  }
+
   void addProductToCart(Map<String, String> cartObject) {
     print('added :$cartObject');
+
     cartList.add(cartObject);
-    _cartController.add(cartList);
+    emit(CartState());
   }
 
-  // Dispose the StreamController when it's no longer needed
-  void dispose() {
-    _cartController.close();
+  void changeQuantity(index, newQuantity) {
+    cartList[index]["quantity"] = newQuantity;
+    emit(CartState());
   }
 }
-
-final cartBloc = CartBloc(); // Create a single instance, to use it later

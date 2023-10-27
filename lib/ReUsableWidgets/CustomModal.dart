@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:i_supply_task/Bloc/CartBloc.dart';
 import 'package:i_supply_task/ReUsableWidgets/CustomButton.dart';
+import 'package:i_supply_task/ReUsableWidgets/QuantityChanger.dart';
 
 class CustomModal extends StatefulWidget {
   final String imageUrl;
@@ -24,6 +26,17 @@ class _CustomModalState extends State<CustomModal> {
   int quantity = 1;
 
   @override
+  void initState() {
+    super.initState();
+    final index = CartBloc.get(context).productInCart(widget.name);
+
+    quantity = index != -1
+        ? int.parse(CartBloc.get(context).cartList[index]["quantity"]!)
+        : 1;
+
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AlertDialog(
       content: Column(
@@ -35,34 +48,12 @@ class _CustomModalState extends State<CustomModal> {
             'Price: \$${widget.price.toStringAsFixed(2)}',
             style: const TextStyle(fontSize: 16),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                icon: const Icon(Icons.remove),
-                onPressed: () {
-                  if (quantity > 1) {
-                    setState(() {
-                      quantity--;
-                      widget.onQuantityChanged(quantity);
-                    });
-
-                  }
-                },
-              ),
-              Text(quantity.toString(), style: const TextStyle(fontSize: 20)),
-              IconButton(
-                icon: const Icon(Icons.add),
-                onPressed: () {
-                  setState(() {
-                    quantity++;
-                    widget.onQuantityChanged(quantity);
-                  });
-
-                },
-              ),
-            ],
-          ),
+          QuantityChanger(
+              quantity: quantity,
+              onButtonPressed: (capturedQuantity) {
+                quantity = capturedQuantity;
+                widget.onQuantityChanged(quantity);
+              }),
           CustomButton(
             label: 'Add to cart',
             onPressed: () {
