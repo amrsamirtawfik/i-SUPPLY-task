@@ -5,4 +5,8 @@ class AuthenticatedState extends AuthenticationState {}
 
 class UnauthenticatedState extends AuthenticationState {}
 
-class CurrentScreenState{}
+// ///CurrentScreen State
+// class CurrentScreenState{}
+
+///Cart State
+class CartState{}
