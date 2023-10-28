@@ -11,6 +11,8 @@ import 'package:i_supply_task/ReUsableWidgets/CustomButton.dart';
 import 'package:i_supply_task/ReUsableWidgets/OrdersList.dart';
 import 'package:i_supply_task/ReUsableWidgets/QuantityChanger.dart';
 
+import '../ReUsableWidgets/CartItemWidget.dart';
+
 class Cart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -47,75 +49,17 @@ class Cart extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                  itemCount: CartBloc.get(context).cartList.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(
-                          left: 200.0, top: 25, right: 200, bottom: 25),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Card(
-                              color: const Color(0xFFF1F1F1),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                    20.0), // Adjust the radius as needed
-                              ),
-                              child: Center(
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: ListTile(
-                                        contentPadding:
-                                            const EdgeInsets.all(16),
-                                        title: Text(
-                                          CartBloc.get(context).cartList[index]
-                                              ["productName"],
-                                          style: const TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        subtitle: Text(
-                                          'EGP ${CartBloc.get(context).cartList[index]["productPrice"]}',
-                                          style: const TextStyle(fontSize: 16),
-                                        ),
-                                        leading: Image.network(
-                                          CartBloc.get(context).cartList[index]
-                                              ["imageUrl"],
-                                          width: 80,
-                                          height: 80,
-                                        ),
-                                      ),
-                                    ),
-                                    QuantityChanger(
-                                      quantity: int.parse(CartBloc.get(context)
-                                          .cartList[index]["quantity"]),
-                                      onButtonPressed: (capturedQuantity) {
-                                        CartBloc.get(context).changeQuantity(
-                                            index, capturedQuantity.toString());
-                                      },
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Card(
-                              color: const Color(0xFFF1F1F1),
-                              child: IconButton(
-                                  onPressed: () {
-                                    CartBloc.get(context)
-                                        .deleteCartObject(index);
-                                  },
-                                  icon: const Icon(
-                                    Icons.delete,
-                                    color: Colors.redAccent,
-                                  )))
-                        ],
-                      ),
-                    );
-                  }),
+                itemCount: CartBloc.get(context).cartList.length,
+                itemBuilder: (context, index) {
+                  return CartItemWidget(
+                    cartItem: CartBloc.get(context).cartList[index],
+                    index: index,
+                    liveCart: true, // Provide the liveCart value
+                  );
+                },
+              ),
             ),
+
             const Divider(
               //black line below the carts
               height: 2,

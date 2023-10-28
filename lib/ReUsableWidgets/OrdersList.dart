@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:i_supply_task/Bloc/CurrentScreenBloc.dart';
 import 'package:i_supply_task/Bloc/PastOrders.dart';
 import 'package:i_supply_task/Bloc/States.dart';
 import 'package:i_supply_task/ReUsableWidgets/ColoredLabel.dart';
 import 'package:i_supply_task/ReUsableWidgets/CustomButton.dart';
 import 'package:i_supply_task/ReUsableWidgets/CustomDashboardLabel.dart';
+import 'package:i_supply_task/Screens/TrackYourOrder.dart';
 
 class DashboardLabels extends StatelessWidget {
   const DashboardLabels({super.key});
@@ -107,8 +109,9 @@ class OrdersTable extends StatelessWidget {
                   cells: [
                     DataCell(TextButton(
                         onPressed: () {
-                          print(order["cartItems"]);
-
+                          context
+                              .read<CurrentScreenBloc>()
+                              .navToTrackYourOrder(order);
                         },
                         child: Text(order["ID"]))),
                     DataCell(Text(order["Created"])),

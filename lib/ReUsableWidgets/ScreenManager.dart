@@ -1,5 +1,8 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:i_supply_task/Bloc/CurrentScreenBloc.dart';
+import 'package:i_supply_task/Bloc/States.dart';
 import 'package:i_supply_task/Screens/Medecines.dart';
 import 'package:i_supply_task/Screens/TrackYourOrder.dart';
 
@@ -23,13 +26,14 @@ class _ScreenManagerState extends State<ScreenManager> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Object>(
-        stream: currentScreenBloc.currentScreenStream,
-        builder: (context, snapshot) {
-          if(snapshot.hasData){
-            return _screens[int.parse(snapshot.data.toString())];
+    return BlocConsumer<CurrentScreenBloc, CurrentScreenState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          if (state is TrackYourOrderScreenState) {
+            Map<String, dynamic> capturedOrder = state.order;
+            return TrackYourOrderScreen(order: capturedOrder);
           }
-          return _screens[index];
+          return _screens[CurrentScreenBloc.get(context).currentScreenIndex];
         });
   }
 }

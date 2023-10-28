@@ -1,6 +1,8 @@
-
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:i_supply_task/Bloc/CurrentScreenBloc.dart';
+import 'package:i_supply_task/Bloc/States.dart';
 
 class NavBar extends StatefulWidget {
   @override
@@ -9,23 +11,24 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   void _onTabTapped(int index) {
-    currentScreenBloc.changeIndex(index);
+    CurrentScreenBloc.get(context).changeIndex(index);
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Object>(
-      stream: currentScreenBloc.currentScreenStream,
-      builder: (context, snapshot) {
-
+    return BlocConsumer<CurrentScreenBloc, CurrentScreenState>(
+      listener: (context, state) {},
+      builder: (context, state) {
         return BottomNavigationBar(
-          currentIndex: currentScreenBloc.currentScreenIndex,
+          currentIndex: CurrentScreenBloc.get(context).currentScreenIndex,
           selectedItemColor: const Color(0xFF4D6CAD),
           unselectedItemColor: Colors.black54,
           unselectedLabelStyle: const TextStyle(color: Colors.black54),
-          showSelectedLabels: true,  // Show selected labels
-          showUnselectedLabels: true, // Show unselected labels
+          showSelectedLabels: true,
+          // Show selected labels
+          showUnselectedLabels: true,
+          // Show unselected labels
 
           onTap: _onTabTapped,
           items: const [
@@ -44,7 +47,7 @@ class _NavBarState extends State<NavBar> {
             ),
           ],
         );
-      }
+      },
     );
   }
 }

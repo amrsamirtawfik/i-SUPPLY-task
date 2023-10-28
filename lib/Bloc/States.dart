@@ -7,8 +7,14 @@ class AuthenticatedState extends AuthenticationState {}
 
 class UnauthenticatedState extends AuthenticationState {}
 
-// ///CurrentScreen State
-// class CurrentScreenState{}
+///CurrentScreen State
+class CurrentScreenState {}
+
+class TrackYourOrderScreenState extends CurrentScreenState{
+  Map<String, dynamic> order;
+
+  TrackYourOrderScreenState({required this.order});
+}
 
 ///Cart State
 class CartState {}

@@ -1,23 +1,22 @@
 import 'dart:async';
 
+import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:i_supply_task/Bloc/States.dart';
 
-class CurrentScreenBloc {
-  final _currentScreenController = StreamController<int>.broadcast();
-  int currentScreenIndex = 0;
+class CurrentScreenBloc extends Cubit<CurrentScreenState> {
+  CurrentScreenBloc() : super(CurrentScreenState());
 
-  Stream<int> get currentScreenStream => _currentScreenController.stream;
+  static CurrentScreenBloc get(context) => BlocProvider.of(context);
+  int currentScreenIndex = 0;
 
   void changeIndex(int index) {
     currentScreenIndex = index;
-    _currentScreenController.add(index);
+    emit(CurrentScreenState());
   }
 
-  // Dispose the StreamController when it's no longer needed
-  void dispose() {
-    _currentScreenController.close();
+  void navToTrackYourOrder(Map<String, dynamic> order) {
+    currentScreenIndex = 2;
+    emit(TrackYourOrderScreenState(order: order));
   }
 }
-
-final currentScreenBloc =
-    CurrentScreenBloc(); // Create a single instance, to use it later

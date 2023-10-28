@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:i_supply_task/Bloc/CurrentScreenBloc.dart';
 import 'package:i_supply_task/ReUsableWidgets/OrdersList.dart';
 import 'package:i_supply_task/Screens/Medecines.dart';
@@ -35,7 +36,7 @@ class HomeScreen extends StatelessWidget {
             CustomButton(
               label: 'New order',
               onPressed: () {
-                currentScreenBloc.changeIndex(1);
+                context.read<CurrentScreenBloc>().changeIndex(1);
               },
             )
           ],
