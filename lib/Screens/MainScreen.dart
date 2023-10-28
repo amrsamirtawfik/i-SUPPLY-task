@@ -11,7 +11,19 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(56.0), child: CustomAppBar()),
+          preferredSize: Size.fromHeight(56.0),
+          child: CustomAppBar(
+            notificationItems: [
+              {'body': 'Item Added!', 'Time': '28/10/23 9:05AM'},
+              {'body': 'Item Added!', 'Time': '28/10/23 9:05AM'},
+              {'body': 'Item Added!', 'Time': '28/10/23 9:05AM'},
+              {'body': 'Item Added!', 'Time': '28/10/23 9:05AM'},
+              {'body': 'Item Added!', 'Time': '28/10/23 9:05AM'},
+              {'body': 'Item Added!', 'Time': '28/10/23 9:05AM'},
+              {'body': 'Item Added!', 'Time': '28/10/23 9:05AM'},
+              {'body': 'Item Added!', 'Time': '28/10/23 9:05AM'},
+            ],
+          )),
       body: ScreenManager(),
       drawer: LeftMenu(),
       bottomNavigationBar: NavBar(),

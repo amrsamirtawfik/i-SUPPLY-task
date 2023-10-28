@@ -1,57 +1,101 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:i_supply_task/Bloc/CurrentScreenBloc.dart';
+import 'package:i_supply_task/Bloc/NotificationsBloc.dart';
+import 'package:i_supply_task/Bloc/States.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
+  final List<Map<String, String>> notificationItems;
+
+  CustomAppBar({Key? key, required this.notificationItems}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Color(0xFF4D6CAD), // Background color
+      backgroundColor: const Color(0xFF4D6CAD),
       title: Row(
         children: [
-          Image.asset('assets/images/isupply_logo_light.png', width: 100, height: 100),
+          Image.asset('assets/images/isupply_logo_light.png',
+              width: 100, height: 100),
         ],
       ),
       actions: [
-        IconButton(
-          icon: Stack(
-            children: [
-              Icon(Icons.notifications), // Notification icon
-              if (hasUnreadNotifications) // Conditionally show the badge
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  child: Container(
-                    padding: EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.red,
-                    ),
-                    constraints: BoxConstraints(
-                      minWidth: 16,
-                      minHeight: 16,
-                    ),
-                    child: Center(
-                      child: Text(
-                        '2', // Number of unread notifications
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
+        BlocConsumer<NotificationsBloc, NotificationState>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              return PopupMenuButton(
+                onOpened: () {
+                  context.read<NotificationsBloc>().resetUnRead();
+                },
+                itemBuilder: (context) {
+                  return <PopupMenuEntry>[
+                    PopupMenuItem(
+                      child: SizedBox(
+                        height: 500,
+                        width: 250,
+                        child: ListView.builder(
+                          itemCount: context
+                              .read<NotificationsBloc>()
+                              .notificationsList
+                              .length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: ListTile(
+                                hoverColor: Colors.grey,
+                                onTap: () {},
+                                leading: const Icon(Icons.add),
+                                title: Text(NotificationsBloc.get(context)
+                                    .notificationsList[index]["body"]!),
+                                subtitle: Text(
+                                  NotificationsBloc.get(context)
+                                      .notificationsList[index]['time']!,
+                                  style: const TextStyle(color: Colors.blue),
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       ),
                     ),
-                  ),
+                  ];
+                },
+                icon: Stack(
+                  children: [
+                    const Icon(Icons.notifications),
+                    if (NotificationsBloc.get(context).unRead > 0)
+                      Positioned(
+                        top: 0,
+                        right: 0,
+                        child: Container(
+                          padding: const EdgeInsets.all(2),
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.red,
+                          ),
+                          constraints: const BoxConstraints(
+                            minWidth: 16,
+                            minHeight: 16,
+                          ),
+                          child: Center(
+                            child: Text(
+                              NotificationsBloc.get(context).unRead.toString(),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
                 ),
-            ],
-          ),
-          onPressed: () {
-            // Handle notification icon tap
-          },
-        ),
+                onSelected: (value) {
+                  // Handle the selection if needed
+                },
+              );
+            }),
       ],
     );
   }
-
-  // Replace this with your notification logic
-  bool get hasUnreadNotifications => true; // You can determine if there are unread notifications.
 }

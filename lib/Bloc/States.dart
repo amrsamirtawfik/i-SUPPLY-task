@@ -28,3 +28,6 @@ class AddedOrderToPastOrdersState extends PastOrdersState {
 
   AddedOrderToPastOrdersState({required this.orders, required this.cartItems});
 }
+
+///Notifications state
+class NotificationState{}

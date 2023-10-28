@@ -47,7 +47,7 @@ class CustomDashboardLabel extends StatelessWidget {
                               fontSize: 14,
                             ),
                           ),
-                          SizedBox(height: 10,),
+                          const SizedBox(height: 10,),
                           Text(
                             dataText, // Dynamic data text
                             style: const TextStyle(fontSize: 20),

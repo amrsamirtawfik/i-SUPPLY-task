@@ -15,7 +15,7 @@ class CartBloc extends Cubit<CartState> {
   }
 
   void addProductToCart(Map<String,dynamic> cartObject) {
-    print('added :$cartObject');
+
 
     cartList.add(cartObject);
     emit(CartState());

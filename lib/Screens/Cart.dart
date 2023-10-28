@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:i_supply_task/Bloc/NotificationsBloc.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +19,7 @@ class Cart extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<CartBloc, CartState>(
       listener: (context, state) {
-        print('state: $state');
+
       },
       builder: (context, state) {
         if (CartBloc.get(context).cartList.isEmpty) {
@@ -59,7 +60,6 @@ class Cart extends StatelessWidget {
                 },
               ),
             ),
-
             const Divider(
               //black line below the carts
               height: 2,
@@ -78,17 +78,22 @@ class Cart extends StatelessWidget {
                       label: 'Place Order',
                       onPressed: () {
                         int rand = (Random().nextInt(900000) + 100000);
-                        Map<String,dynamic> order={
+                        Map<String, dynamic> order = {
                           "ID": '#$rand',
-                          "Created": DateFormat('dd/MM/yyyy').format(DateTime.now()),
+                          "Created":
+                              DateFormat('dd/MM/yyyy').format(DateTime.now()),
                           "Qty": CartBloc.get(context).sumOfQuantities(),
-                          "Price":CartBloc.get(context).sumOfPrices(),
-                          "Status":'Pending',
-                          "cartItems":   jsonEncode(CartBloc.get(context).cartList),
-                          
+                          "Price": CartBloc.get(context).sumOfPrices(),
+                          "Status": 'Pending',
+                          "cartItems":
+                              jsonEncode(CartBloc.get(context).cartList),
                         };
                         context.read<PastOrdersBloc>().addOrder(order);
-
+                        context.read<NotificationsBloc>().addNotification({
+                          "body":
+                              "A new order #${rand} is placed! You can check it now from Home.",
+                          'time': DateFormat().format(DateTime.now())
+                        });
                         showDialog(
                             context: context,
                             builder: (context) {

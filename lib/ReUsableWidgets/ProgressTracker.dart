@@ -3,21 +3,48 @@ import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class ProgressTracker extends StatelessWidget {
-  int currentStep;
-  bool approved;
+  String currentStatus;
 
   ProgressTracker({
-    required this.currentStep,
-    required this.approved,
+    required this.currentStatus,
   });
 
   @override
   Widget build(BuildContext context) {
     Color selectedColor;
-    if (currentStep == 1) {
-      selectedColor = Colors.black;
-    } else {
-      approved ? selectedColor = Colors.green : selectedColor=Colors.red;
+    int currentStep;
+    switch (currentStatus) {
+      case 'Pending':
+        selectedColor = Colors.black;
+        currentStep = 1;
+        break;
+      case 'Approved':
+        selectedColor = Colors.green;
+        currentStep = 2;
+        break;
+      case 'Rejected':
+        selectedColor = Colors.red;
+        currentStep = 2;
+        break;
+      case 'Out for delivery':
+        selectedColor = Colors.green;
+        currentStep = 4;
+        break;
+      case 'Ready':
+        selectedColor = Colors.green;
+        currentStep = 3;
+        break;
+      case 'Delivered':
+        selectedColor = Colors.green;
+        currentStep = 5;
+        break;
+      case 'Cancelled':
+        selectedColor = Color(0xFFFFE300);
+        currentStep = 3;
+        break;
+      default:
+        selectedColor = Colors.black;
+        currentStep = 1;
     }
     return StepProgressIndicator(
         totalSteps: 5,
@@ -53,12 +80,12 @@ class ProgressTracker extends StatelessWidget {
                     height: 30,
                     color: color,
                     child: Icon(
-                      approved ? Icons.check : Icons.close,
+                      selectedColor == Colors.red ? Icons.close : Icons.check,
                       color: Colors.white,
                     ),
                   ),
                   Text(
-                    approved ? 'Approved' : 'Rejected',
+                    selectedColor == Colors.red ? 'Rejected' : 'Approved',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )
                 ],
@@ -70,14 +97,14 @@ class ProgressTracker extends StatelessWidget {
                     width: 200,
                     height: 30,
                     color: color,
-                    child: const Icon(
-                      Icons.check,
+                    child: Icon(
+                      color == Colors.green ? Icons.check : Icons.minimize,
                       color: Colors.white,
                     ),
                   ),
-                  const Text(
-                    'Ready',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  Text(
+                    color == Colors.green ? 'Ready' : 'Cancelled',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   )
                 ],
               );

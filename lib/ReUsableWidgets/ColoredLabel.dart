@@ -10,14 +10,27 @@ class ColoredLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (text == 'Approved') {
-      backgroundColor = Colors.green;
-    }
-    else if(text=='Rejected'){
-      backgroundColor=Colors.red;
-    }
-    else{
-      backgroundColor=Colors.grey; //Pending
+    switch (text) {
+      case 'Pending':
+        backgroundColor = Colors.black;
+        break;
+      case 'Approved':
+        backgroundColor = Colors.green;
+        break;
+      case 'Rejected':
+        backgroundColor = Colors.red;
+        break;
+      case 'Ready':
+        backgroundColor = Colors.green;
+        break;
+      case 'Out for delivery':
+        backgroundColor = Colors.green;
+      case 'Cancelled':
+        backgroundColor = Color(0xFFFFE300);
+      case 'Delivered':
+        backgroundColor = Colors.green;
+      default:
+        backgroundColor = Colors.grey;
     }
     return Container(
       decoration: BoxDecoration(
