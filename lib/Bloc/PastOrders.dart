@@ -62,9 +62,18 @@ class PastOrdersBloc extends Cubit<PastOrdersState> {
       "Status": "Out for delivery",
       "cartItems":
           "[{\"productName\":\"Dixy Oral Syringe 5Ml\",\"productPrice\":\"4.0\",\"imageUrl\":\"https://misr-online.com/media/catalog/product/cache/f4c520eccbadb01ffa4ab0fe869fee93/0/9/094638_300455.jpg\",\"quantity\":\"1\"},{\"productName\":\"Baby Steps (1) Goat Milk Powder 300Gm\",\"productPrice\":\"485.0\",\"imageUrl\":\"https://misr-online.com/media/catalog/product/cache/f4c520eccbadb01ffa4ab0fe869fee93/1/2/122305_3.jpg\",\"quantity\":\"1\"},{\"productName\":\"Dexamethasone (Mup) 8Mg 2Ml 5 Amp\",\"productPrice\":\"32.5\",\"imageUrl\":\"https://misr-online.com/media/catalog/product/cache/f4c520eccbadb01ffa4ab0fe869fee93/1/5/155737_122100.jpg\",\"quantity\":\"1\"}]"
+    },
+    {
+      "ID": "#386741",
+      "Created": "28/10/2023",
+      "Qty": 3,
+      "Price": 10.5,
+      "Status": "Pending",
+      "cartItems":
+          "[{\"productName\":\"Syringe Infant 3Ml\",\"productPrice\":\"3.5\",\"imageUrl\":\"https://misr-online.com/media/catalog/product/cache/f4c520eccbadb01ffa4ab0fe869fee93/1/6/160319_300441.jpg\",\"quantity\":\"3\"}]"
     }
   ];
-
+  // final List<Map<String, dynamic>> mockOrders = [];
   int calcPending() {
     int total = 0;
     for (var order in mockOrders) {
@@ -137,7 +146,7 @@ class PastOrdersBloc extends Cubit<PastOrdersState> {
 
   void addOrder(Map<String, dynamic> o) {
     mockOrders.add(o);
-    print(jsonEncode(mockOrders));
+    // print(jsonEncode(mockOrders));
 
     emit(PastOrdersState());
   }

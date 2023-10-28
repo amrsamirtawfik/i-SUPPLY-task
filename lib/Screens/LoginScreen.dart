@@ -62,11 +62,11 @@ class _LoginScreen extends State<LoginScreen> {
             // child: Image.asset('assets/images/medicine.jpg'),
             child: ClipRRect(
               borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(100),
-                bottomLeft: Radius.circular(100),
+                topLeft: Radius.circular(300),
+                bottomLeft: Radius.circular(300),
               ),
               child: Image.asset(
-                'assets/images/medicine.jpg',
+                'assets/images/23667.jpg',
                 fit: BoxFit.cover,
               ),
             ),
@@ -79,7 +79,7 @@ class _LoginScreen extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    'Welcome to i\'SUPPLY pharmacy!'
+                    'Welcome to i\'SUPPLY!'
                     '\n'
                     '\n'
                     'Please Login',

@@ -98,12 +98,12 @@ class ProgressTracker extends StatelessWidget {
                     height: 30,
                     color: color,
                     child: Icon(
-                      color == Colors.green ? Icons.check : Icons.minimize,
+                      currentStatus!='Cancelled'? Icons.check : Icons.minimize,
                       color: Colors.white,
                     ),
                   ),
                   Text(
-                    color == Colors.green ? 'Ready' : 'Cancelled',
+                    currentStatus!='Cancelled'? 'Ready' : 'Cancelled',
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   )
                 ],
