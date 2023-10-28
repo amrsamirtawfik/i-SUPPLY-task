@@ -7,27 +7,29 @@ import '../ReUsableWidgets/CustomButton.dart';
 import 'Cart.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
 
     return Padding(
-        padding: EdgeInsets.only(left: 75, top: 25, right: 75, bottom: 25),
+        padding: const EdgeInsets.only(left: 75, top: 25, right: 75, bottom: 25),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             DashboardLabels(),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               'Your orders',
               style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             OrdersSection(),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             CustomButton(

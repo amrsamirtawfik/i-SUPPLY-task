@@ -7,14 +7,14 @@ class CartBloc extends Cubit<CartState> {
 
   static CartBloc get(context) => BlocProvider.of(context);
 
-  List<Map<String, String>> cartList = [];
+  List<CartObject> cartList = [];
 
   int productInCart(String productName) {
     return cartList
-        .indexWhere((element) => element["productName"] == productName);
+        .indexWhere((element) => element.productName == productName);
   }
 
-  void addProductToCart(Map<String, String> cartObject) {
+  void addProductToCart(CartObject cartObject) {
     print('added :$cartObject');
 
     cartList.add(cartObject);
@@ -22,7 +22,46 @@ class CartBloc extends Cubit<CartState> {
   }
 
   void changeQuantity(index, newQuantity) {
-    cartList[index]["quantity"] = newQuantity;
+    cartList[index].quantity = newQuantity;
     emit(CartState());
   }
+
+  void deleteCartObject(index) {
+    cartList.removeAt(index);
+    emit(CartState());
+  }
+
+  void clearCart() {
+    cartList.clear();
+    emit(CartState());
+  }
+
+  double sumOfPrices() {
+    double sum = 0;
+    for (var item in cartList) {
+      sum += double.parse(item.productPrice) * double.parse(item.quantity);
+    }
+    return sum;
+  }
+
+  int sumOfQuantities() {
+    int sum = 0;
+    for (var item in cartList) {
+      sum += int.parse(item.quantity);
+    }
+    return sum;
+  }
+}
+
+class CartObject {
+  String productName;
+  String productPrice;
+  String imageUrl;
+  String quantity;
+
+  CartObject(
+      {required this.productName,
+      required this.productPrice,
+      required this.imageUrl,
+      required this.quantity});
 }

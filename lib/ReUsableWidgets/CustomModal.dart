@@ -31,9 +31,8 @@ class _CustomModalState extends State<CustomModal> {
     final index = CartBloc.get(context).productInCart(widget.name);
 
     quantity = index != -1
-        ? int.parse(CartBloc.get(context).cartList[index]["quantity"]!)
+        ? int.parse(CartBloc.get(context).cartList[index].quantity)
         : 1;
-
   }
 
   @override
@@ -45,7 +44,7 @@ class _CustomModalState extends State<CustomModal> {
           Image.network(widget.imageUrl),
           Text(widget.name, style: const TextStyle(fontSize: 20)),
           Text(
-            'Price: \$${widget.price.toStringAsFixed(2)}',
+            'Price: EGP ${widget.price.toStringAsFixed(2)}',
             style: const TextStyle(fontSize: 16),
           ),
           QuantityChanger(

@@ -10,3 +10,6 @@ class UnauthenticatedState extends AuthenticationState {}
 
 ///Cart State
 class CartState{}
+
+///Past orders state
+class PastOrdersState{}
