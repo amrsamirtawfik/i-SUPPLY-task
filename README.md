@@ -1,59 +1,63 @@
 # i'SUPPLY pharmacy app
 
 ## ScreenShots
+Login screen
+![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/2ea4520e-9eee-4cc5-9ef7-ffd8adca190e)
 
-Home
+Home (dashboard)
 
-![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/c3b06357-ff96-468d-bcf9-74f558765438)
-
-
+![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/a6232fb0-cfd2-4243-bc25-b6fdf005796b)
 
 
-Dashboard
 
-![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/375c4c55-476b-41b3-9d38-a3b8946fa715)
 
 
 
 
 Left menu
 
-![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/33d19141-6d6e-40ae-a7e7-36ef88f3e155)
+![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/d9a9e688-d4bf-423f-aff7-b8e152587b5b)
 
 
 
 
 Shop
-
-![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/83849277-f547-4499-a4fc-b08c9494e32c)
+![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/c8c93be1-0313-45b3-8b58-a5277251d11e)
 
 
 
 
 Empty Cart
 
-![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/8636fb2f-90ae-40bf-aa88-31c90cebb016)
+![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/e7d7c4a2-0401-4690-a083-aeb3ee1ef4ed)
 
 
 
 
 Not empty cart
 
-![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/b9b38e10-04d0-45e8-a61f-9b90d92a1891)
+![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/919e9b8d-f9d2-4895-8578-aaf5074b21d6)
 
+![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/4230ac0b-00ff-4a8f-94f8-1919f6609f2b)
 
 
 
 Add to cart modal
 
-![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/75442277-6583-48d9-adcb-cfc3b840916c)
+![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/b5484f6b-6429-4b04-bd9f-ed5482106507)
 
 
 
 
 Track Order
 
-![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/7e9c36a3-e0e9-4fb6-91d6-de3d2ed0e20a)
+![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/11db0d92-a7c2-4006-8b0f-7bc6d87b7a98)
+![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/bd716492-7eed-414e-a466-72941529fb04)
+![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/587ae098-bd10-4c03-908d-75df07b4aa4c)
+![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/18861796-4bff-41f5-86f8-fc52d14462b7)
+![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/c0489a4c-9e32-47da-b8ee-ab0cabcdcd7d)
+![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/047bdc7c-7751-4695-a46c-d7dc3aad578a)
+
 
 Notifications
 ![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/5c67de22-798a-4385-8bab-443f618df50a)
