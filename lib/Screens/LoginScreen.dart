@@ -33,6 +33,7 @@ class _LoginScreen extends State<LoginScreen> {
         setState(() {
           loginError = false;
         });
+
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => MainScreen()));
       } else if (state is UnauthenticatedState) {

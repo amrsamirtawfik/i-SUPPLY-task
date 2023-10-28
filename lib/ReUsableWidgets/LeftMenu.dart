@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:i_supply_task/Screens/LoginScreen.dart';
 
 class LeftMenu extends StatelessWidget {
   @override
@@ -8,10 +9,10 @@ class LeftMenu extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          UserAccountsDrawerHeader(
+          const UserAccountsDrawerHeader(
             decoration: BoxDecoration(color: Color(0xFF4D6CAD)),
-            accountName: Text("John Doe"),
-            accountEmail: Text("johndoe@example.com"),
+            accountName: Text("Amr Samir"),
+            accountEmail: Text("amrsamirtawfik@gmail.com"),
             currentAccountPicture: CircleAvatar(
               backgroundColor: Colors.white,
               child: Icon(
@@ -39,6 +40,9 @@ class LeftMenu extends StatelessWidget {
             title: const Text('Logout'),
             onTap: () {
               // Handle Logout menu item click
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => LoginScreen()));
+
             },
           ),
         ],

@@ -1,3 +1,5 @@
+import 'PastOrders.dart';
+
 /// AuthenticationState
 abstract class AuthenticationState {}
 
@@ -9,7 +11,14 @@ class UnauthenticatedState extends AuthenticationState {}
 // class CurrentScreenState{}
 
 ///Cart State
-class CartState{}
+class CartState {}
 
 ///Past orders state
-class PastOrdersState{}
+class PastOrdersState {}
+
+class AddedOrderToPastOrdersState extends PastOrdersState {
+  List<Order> orders;
+  Map<String, dynamic> cartItems;
+
+  AddedOrderToPastOrdersState({required this.orders, required this.cartItems});
+}

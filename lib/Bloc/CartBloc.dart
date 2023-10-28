@@ -7,14 +7,14 @@ class CartBloc extends Cubit<CartState> {
 
   static CartBloc get(context) => BlocProvider.of(context);
 
-  List<CartObject> cartList = [];
+  List<Map<String,dynamic>> cartList = [];
 
   int productInCart(String productName) {
     return cartList
-        .indexWhere((element) => element.productName == productName);
+        .indexWhere((element) => element["productName"] == productName);
   }
 
-  void addProductToCart(CartObject cartObject) {
+  void addProductToCart(Map<String,dynamic> cartObject) {
     print('added :$cartObject');
 
     cartList.add(cartObject);
@@ -22,7 +22,7 @@ class CartBloc extends Cubit<CartState> {
   }
 
   void changeQuantity(index, newQuantity) {
-    cartList[index].quantity = newQuantity;
+    cartList[index]["quantity"] = newQuantity;
     emit(CartState());
   }
 
@@ -39,7 +39,7 @@ class CartBloc extends Cubit<CartState> {
   double sumOfPrices() {
     double sum = 0;
     for (var item in cartList) {
-      sum += double.parse(item.productPrice) * double.parse(item.quantity);
+      sum += double.parse(item["productPrice"]!) * double.parse(item["quantity"]!);
     }
     return sum;
   }
@@ -47,7 +47,7 @@ class CartBloc extends Cubit<CartState> {
   int sumOfQuantities() {
     int sum = 0;
     for (var item in cartList) {
-      sum += int.parse(item.quantity);
+      sum += int.parse(item["quantity"]!);
     }
     return sum;
   }

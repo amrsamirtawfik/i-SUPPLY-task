@@ -150,8 +150,7 @@ class _MedecinesScreenState extends State<MedecinesScreen> {
                                   int capturedQuantity = foundIndex == -1
                                       ? 1
                                       : int.parse(CartBloc.get(context)
-                                          .cartList[foundIndex]
-                                          .quantity);
+                                          .cartList[foundIndex]["quantity"]!);
                                   showDialog(
                                     context: context,
                                     builder: (context) {
@@ -168,14 +167,14 @@ class _MedecinesScreenState extends State<MedecinesScreen> {
 
                                           if (foundIndex == -1) {
                                             //product isn't in cart
-
-                                            CartObject cartObject = CartObject(
-                                                productName: product.name,
-                                                productPrice:
-                                                    product.price.toString(),
-                                                imageUrl: product.imageUrl,
-                                                quantity: capturedQuantity
-                                                    .toString());
+                                            Map<String, dynamic> cartObject = {
+                                              "productName": product.name,
+                                              "productPrice":
+                                                  product.price.toString(),
+                                              "imageUrl": product.imageUrl,
+                                              "quantity":
+                                                  capturedQuantity.toString(),
+                                            };
 
                                             CartBloc.get(context)
                                                 .addProductToCart(cartObject);

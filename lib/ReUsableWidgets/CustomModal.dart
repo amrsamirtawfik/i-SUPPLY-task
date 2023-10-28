@@ -31,7 +31,7 @@ class _CustomModalState extends State<CustomModal> {
     final index = CartBloc.get(context).productInCart(widget.name);
 
     quantity = index != -1
-        ? int.parse(CartBloc.get(context).cartList[index].quantity)
+        ? int.parse(CartBloc.get(context).cartList[index]["quantity"])
         : 1;
   }
 

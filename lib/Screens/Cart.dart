@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:intl/intl.dart';
@@ -68,21 +69,19 @@ class Cart extends StatelessWidget {
                                         contentPadding:
                                             const EdgeInsets.all(16),
                                         title: Text(
-                                          CartBloc.get(context)
-                                              .cartList[index]
-                                              .productName,
+                                          CartBloc.get(context).cartList[index]
+                                              ["productName"],
                                           style: const TextStyle(
                                               fontSize: 18,
                                               fontWeight: FontWeight.bold),
                                         ),
                                         subtitle: Text(
-                                          'EGP ${CartBloc.get(context).cartList[index].productPrice}',
+                                          'EGP ${CartBloc.get(context).cartList[index]["productPrice"]}',
                                           style: const TextStyle(fontSize: 16),
                                         ),
                                         leading: Image.network(
-                                          CartBloc.get(context)
-                                              .cartList[index]
-                                              .imageUrl,
+                                          CartBloc.get(context).cartList[index]
+                                              ["imageUrl"],
                                           width: 80,
                                           height: 80,
                                         ),
@@ -90,8 +89,7 @@ class Cart extends StatelessWidget {
                                     ),
                                     QuantityChanger(
                                       quantity: int.parse(CartBloc.get(context)
-                                          .cartList[index]
-                                          .quantity),
+                                          .cartList[index]["quantity"]),
                                       onButtonPressed: (capturedQuantity) {
                                         CartBloc.get(context).changeQuantity(
                                             index, capturedQuantity.toString());
@@ -136,13 +134,17 @@ class Cart extends StatelessWidget {
                       label: 'Place Order',
                       onPressed: () {
                         int rand = (Random().nextInt(900000) + 100000);
-                        context.read<PastOrdersBloc>().addOrder(Order(
-                            '#$rand',
-                            DateFormat('dd/MM/yyyy').format(DateTime.now()),
-                            CartBloc.get(context).sumOfPrices(),
-                            CartBloc.get(context).sumOfQuantities(),
-                            'Pending',
-                            CartBloc.get(context).cartList));
+                        Map<String,dynamic> order={
+                          "ID": '#$rand',
+                          "Created": DateFormat('dd/MM/yyyy').format(DateTime.now()),
+                          "Qty": CartBloc.get(context).sumOfQuantities(),
+                          "Price":CartBloc.get(context).sumOfPrices(),
+                          "Status":'Pending',
+                          "cartItems":   jsonEncode(CartBloc.get(context).cartList),
+                          
+                        };
+                        context.read<PastOrdersBloc>().addOrder(order);
+
                         showDialog(
                             context: context,
                             builder: (context) {

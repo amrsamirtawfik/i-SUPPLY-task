@@ -4,7 +4,7 @@ import 'dart:async';
 import 'States.dart';
 
 class AuthenticationBloc {
-  final _authenticationController = StreamController<AuthenticationState>();
+  final _authenticationController = StreamController<AuthenticationState>.broadcast();
 
   Stream<AuthenticationState> get authenticationStream =>
       _authenticationController.stream;

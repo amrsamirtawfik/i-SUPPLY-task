@@ -72,8 +72,26 @@ class OrdersTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<PastOrdersBloc, PastOrdersState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        print('State in listener: $state');
+      },
       builder: (context, state) {
+        if (state is AddedOrderToPastOrdersState) {
+          // Access the list of orders from the state
+          List<Order> orders = state.orders;
+
+          // Now you can work with the orders
+          print('State in builder has ${orders.length} orders');
+          print('Cart passed: ${state.cartItems}');
+          for (Order order in orders) {
+            order.printOrderDetails();
+          }
+        }
+
+        if (PastOrdersBloc.get(context).mockOrders.isEmpty) {
+          print('entered if');
+          return const Text("You didn't have any past orders.");
+        }
         return DataTable(
           columns: const <DataColumn>[
             DataColumn(label: Text('ID')),
@@ -87,31 +105,17 @@ class OrdersTable extends StatelessWidget {
               .map(
                 (order) => DataRow(
                   cells: [
-                    DataCell(Text(order.id)),
-                    DataCell(Text(order.created)),
-                    DataCell(
-                        Text('EGP ${order.totalPrice.toStringAsFixed(2)}')),
-                    DataCell(Text(order.qty.toString())),
-                    DataCell(ColoredLabel(text: order.status)),
+                    DataCell(TextButton(
+                        onPressed: () {
+                          print(order["cartItems"]);
+
+                        },
+                        child: Text(order["ID"]))),
+                    DataCell(Text(order["Created"])),
+                    DataCell(Text('EGP ${order["Price"].toStringAsFixed(2)}')),
+                    DataCell(Text(order["Qty"].toString())),
+                    DataCell(ColoredLabel(text: order["Status"])),
                   ],
-                ),
-              )
-              .map(
-                (dataRow) => DataRow(
-                  cells: dataRow.cells
-                      .map(
-                        (dataCell) => DataCell(
-                          InkWell(
-                            onTap: () {
-                              // Handle the tap on this row (order)
-                              print('Order ${dataRow.cells[0].child} tapped.');
-                              print('cart of pressed is : ${dataRow}');
-                            },
-                            child: dataCell.child,
-                          ),
-                        ),
-                      )
-                      .toList(),
                 ),
               )
               .toList(),
@@ -308,4 +312,3 @@ class OrderListItem extends StatelessWidget {
     );
   }
 }
-
