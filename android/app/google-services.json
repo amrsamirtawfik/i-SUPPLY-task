@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "524227220692",
+    "project_id": "isupply-task",
+    "storage_bucket": "isupply-task.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524227220692:android:56a9fe4fd6836e72195741",
+        "android_client_info": {
+          "package_name": "com.example.i_supply_task"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACuit53Yktcw-QG1wmPfmXPQhWlTEWHCU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
