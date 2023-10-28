@@ -55,6 +55,10 @@ Track Order
 
 ![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/7e9c36a3-e0e9-4fb6-91d6-de3d2ed0e20a)
 
+Notifications
+![image](https://github.com/amrsamirtawfik/i-SUPPLY-task/assets/85262211/5c67de22-798a-4385-8bab-443f618df50a)
+
+
 ## Installation
 ### 1)First ensure flutter is setup without any issues.
 ### 2)Clone this project using
@@ -69,4 +73,26 @@ Track Order
       
       
 
+## Features
+### Mock authentication
+The app checks only on ***admin*** as username and ***1234*** as password.
+### Dashboard for previous orders
+User can track his previous orders made.
+### Mock drugs data
+User can shop drugs with some mock data.
+### Add products to cart
+User can add the needed drug to cart, with the ability of adjusting quantity needed.
+### Flexible cart
+User can adjust quantity or remove products from the cart page.
+### Notifications
+A notification is sent when user places an order.
+### Order tracking
+User can track his order and know its current status ("Pending","Approved","Rejected","Cancelled", "Ready", "Out for delivery","Delivered"), with some UI visuals to facilitate the user experience.
+
+## Used technologies
+
+### Flutter
+The app was fully developed using Flutter on Linux.
+### Bloc
+State management library.
 
